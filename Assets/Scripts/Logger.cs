@@ -64,6 +64,7 @@ public class Logger : MonoBehaviour
     public static void LogWarning(string logString) => instance.QueueLog(logString, LogType.Warning);
     public static void LogError(string logString) => instance.QueueLog(logString, LogType.Error);
     public static void Assert(bool condition,string logString) => instance.QueueAssert(condition, logString, LogType.Assert);
+    public static void Clear() => instance.ClearLogs();
 
     private void QueueLog(string logString, LogType logType)
     {
@@ -120,6 +121,11 @@ public class Logger : MonoBehaviour
                 logQueue.Dequeue();
             }
         }
+    }
+
+    private void ClearLogs()
+    {
+        logQueue.Clear();
     }
 
     void OnGUI()
